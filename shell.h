@@ -23,7 +23,7 @@ void execute_external_command(char *input);
 void execute_command(char *input);
 int exec_cmd(const char *command, char *const args[], char *const env[]);
 int str_cmp(const char *s1, const char *s2);
-int str_format(char *str, size_t size, const char *format, void **args);
+str_format(full_path, sizeof(full_path), "%s/%s", (void *)token, (void *)input);
 
 #endif
 
