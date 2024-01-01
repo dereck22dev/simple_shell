@@ -8,7 +8,7 @@
  * @param args Additional arguments to be formatted.
  * @return The number of characters written (excluding null byte).
  */
-int str_format(char *str, size_t size, const char *format, void **args) {
+int str_format(char *str, size_t size, const char *format, void *args) {
     size_t written = 0;
     const char *src = format;
     char *dest = str;
@@ -28,14 +28,14 @@ int str_format(char *str, size_t size, const char *format, void **args) {
 
             switch (*src) {
                 case 's':
-                    s = (char *)args[i];
+                    s = (char *)args;
                     while (*s != '\0' && written < size - 1) {
                         *dest++ = *s++;
                         written++;
                     }
                     break;
                 case 'd':
-                    d = *((int *)args[i]);
+                    d = *((int *)args);
                     while (d != 0 && written < size - 1) {
                         *dest++ = '0' + d % 10;
                         d /= 10;
@@ -43,12 +43,12 @@ int str_format(char *str, size_t size, const char *format, void **args) {
                     }
                     break;
                 case 'c':
-                    c = *((int *)args[i]);
+                    c = *((int *)args);
                     *dest++ = c;
                     written++;
                     break;
                 case 'f':
-                    f = *((double *)args[i]);
+                    f = *((double *)args);
                     d = (int)f;
                     while (d != 0 && written < size - 1) {
                         *dest++ = '0' + d % 10;
@@ -68,7 +68,7 @@ int str_format(char *str, size_t size, const char *format, void **args) {
                     }
                     break;
                 case 'x':
-                    x = *((unsigned int *)args[i]);
+                    x = *((unsigned int *)args);
                     while (x != 0 && written < size - 1) {
                         *dest++ = "0123456789abcdef"[x % 16];
                         x /= 16;
