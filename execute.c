@@ -44,7 +44,7 @@ void execute_command(char *input)
             {
                 char full_path[MAX_INPUT_SIZE];
 
-              str_format(full_path, MAX_INPUT_SIZE, "%s/%s", (void *)token, (void *)input);
+                str_format(full_path, MAX_INPUT_SIZE, "%s/%s", token, input);
 
                 token = str_tok(NULL, ":");
             }
